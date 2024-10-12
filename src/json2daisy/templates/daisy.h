@@ -17,7 +17,7 @@
 
 #define ANALOG_COUNT {{analogcount}}
 
-{% if CVOutsDMA != '' %}
+{% if CVOuts != '' %}
 static constexpr size_t cv_buf_len = 64;
 uint16_t DMA_BUFFER_MEM_SECTION cvout1[cv_buf_len];
 uint16_t DMA_BUFFER_MEM_SECTION cvout2[cv_buf_len];
@@ -118,12 +118,6 @@ struct Daisy{{ name|capitalize }} {
 
     // DAC 
     {{ CVOuts }} 
-    {% endif %}
-
-    {% if CVOutsDMA != '' %}
-
-    // DMA DAC 
-    {{ CVOutsDMA }} 
     {% endif %}
     
     {% if display != '' %}
@@ -349,12 +343,10 @@ struct Daisy{{ name|capitalize }} {
     som.StartAudio(cb);
   }
 
-  {% if CVOutsDMA != '' %}
   inline void StartCV(daisy::DacHandle::DacCallback cb)
   {
     som.dac.Start(&cvout1[0], &cvout2[0], cv_buf_len, cb);
   }
-  {% endif %}
 
   /** This is the board's "System On Module" */
   {{som_class}} som;

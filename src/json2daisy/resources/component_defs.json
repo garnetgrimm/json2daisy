@@ -236,28 +236,6 @@
 		]
 	},
 	"CVOuts": {
-		"map_init": "{name}.bitdepth = {bitdepth};\n    {name}.buff_state = {buff_state};\n    {name}.mode = {mode};\n    {name}.chn = {channel};\n    som.dac.Init({name});\n    som.dac.WriteValue({channel}, 0);",
-		"typename": "daisy::DacHandle::Config",
-		"direction": "out",
-		"pin": "",
-		"bitdepth": "daisy::DacHandle::BitDepth::BITS_12",
-		"buff_state": "daisy::DacHandle::BufferState::ENABLED",
-		"mode": "daisy::DacHandle::Mode::POLLING",
-		"channel": "daisy::DacHandle::Channel::BOTH",
-		"mapping": [
-			{
-				"name": "{name}1",
-				"set": "{class_name}.som.dac.WriteValue(daisy::DacHandle::Channel::ONE, {value} * 4095);",
-				"where": "main"
-			},
-			{
-				"name": "{name}2",
-				"set": "{class_name}.som.dac.WriteValue(daisy::DacHandle::Channel::TWO, {value} * 4095);",
-				"where": "main"
-			}
-		]
-	},
-	"CVOutsDMA": {
 		"map_init": "{name}.bitdepth = {bitdepth};\n    {name}.buff_state = {buff_state};\n    {name}.mode = {mode};\n    {name}.chn = {channel};\n    som.dac.Init({name});",
 		"typename": "daisy::DacHandle::Config",
 		"direction": "out",
