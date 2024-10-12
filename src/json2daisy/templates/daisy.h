@@ -343,10 +343,16 @@ struct Daisy{{ name|capitalize }} {
     som.StartAudio(cb);
   }
 
+  {% if CVOuts != '' %}
   inline void StartCV(daisy::DacHandle::DacCallback cb)
   {
     som.dac.Start(&cvout1[0], &cvout2[0], cv_buf_len, cb);
   }
+
+  inline size_t CvOutSampleRate() {
+    return som.dac.GetConfig().target_samplerate;
+  }
+  {% endif %}
 
   /** This is the board's "System On Module" */
   {{som_class}} som;

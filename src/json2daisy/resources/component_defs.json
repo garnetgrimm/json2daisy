@@ -236,7 +236,7 @@
 		]
 	},
 	"CVOuts": {
-		"map_init": "{name}.bitdepth = {bitdepth};\n    {name}.buff_state = {buff_state};\n    {name}.mode = {mode};\n    {name}.chn = {channel};\n    som.dac.Init({name});",
+		"map_init": "{name}.bitdepth = {bitdepth};\n    {name}.buff_state = {buff_state};\n    {name}.mode = {mode};\n    {name}.chn = {channel};\n    {name}.target_samplerate={sample_rate};\n    som.dac.Init({name});",
 		"typename": "daisy::DacHandle::Config",
 		"direction": "out",
 		"pin": "",
@@ -244,6 +244,7 @@
 		"buff_state": "daisy::DacHandle::BufferState::ENABLED",
 		"mode": "daisy::DacHandle::Mode::DMA",
 		"channel": "daisy::DacHandle::Channel::BOTH",
+		"sample_rate": "48000",
 		"mapping": []
 	},
 	"i2c": {
