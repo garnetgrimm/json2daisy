@@ -257,6 +257,17 @@
 			}
 		]
 	},
+	"CVOutsDMA": {
+		"map_init": "{name}.bitdepth = {bitdepth};\n    {name}.buff_state = {buff_state};\n    {name}.mode = {mode};\n    {name}.chn = {channel};\n    som.dac.Init({name});",
+		"typename": "daisy::DacHandle::Config",
+		"direction": "out",
+		"pin": "",
+		"bitdepth": "daisy::DacHandle::BitDepth::BITS_12",
+		"buff_state": "daisy::DacHandle::BufferState::ENABLED",
+		"mode": "daisy::DacHandle::Mode::DMA",
+		"channel": "daisy::DacHandle::Channel::BOTH",
+		"mapping": []
+	},
 	"i2c": {
 		"map_init": "{name}.Init({{{peripheral}, {{som.GetPin({pin_scl}), som.GetPin({pin_sda})}}, {speed}, {mode}}});",
 		"typename": "daisy::I2CHandle",
