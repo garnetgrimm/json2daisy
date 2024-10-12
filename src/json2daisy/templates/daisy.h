@@ -3,6 +3,8 @@
 #ifndef __JSON2DAISY_{{name|upper}}_H__
 #define __JSON2DAISY_{{name|upper}}_H__
 
+#include <array>
+
 {% if som == 'seed' %}
 #include "daisy_seed.h"
 #include "dev/codec_ak4556.h"
@@ -252,6 +254,14 @@ struct Daisy{{ name|capitalize }} {
     som.adc.Start();
     {% endif %}
     {% endif %}
+
+    {% for category, data in cmp_arr.items() %}
+    {{category}}s = {
+      {% for member in data.members %}
+      &{{member}},
+      {% endfor %}
+    };
+    {% endfor %}
   }
 
   /** Handles all the controls processing that needs to occur at the block rate
@@ -336,6 +346,10 @@ struct Daisy{{ name|capitalize }} {
   {{comps}}
   {{dispdec}}
   {{midi}}
+
+  {% for category, data in cmp_arr.items() %}
+  std::array<{{data.typename}}*, {{data.members|length}}> {{category}}s;
+  {% endfor %}
 
 };
 

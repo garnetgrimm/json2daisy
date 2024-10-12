@@ -2,6 +2,7 @@ import jinja2
 import json
 import os
 import pkg_resources
+import re
 
 from typing import Optional
 
@@ -287,6 +288,26 @@ def generate_header(board_description_dict: dict) -> 'tuple[str, dict]':
         replacements['non_class_declarations'] = "\n".join(
             map(lambda x: x['non_class_decl'].format_map(x), non_class_declarations)
         )
+
+    cmp_arr = {}
+    for component in component_declarations:
+        name = component['name']
+        m = re.match(r'(.*?)([0-9]+)$', name)
+        if not m:
+            continue
+        
+        category = m.groups()[0]
+        if category not in cmp_arr:
+            cmp_arr[category] = {
+                'typename': component['typename'],
+                'members': []
+            }
+        if cmp_arr[category]['typename'] != component['typename']:
+            raise Exception(f"name {name} crosses category {category}, talk to Garnet")
+        cmp_arr[category]['members'].append(name)
+        
+
+    replacements['cmp_arr'] = cmp_arr
 
     # env_opts = {"trim_blocks": True, "lstrip_blocks": True}
 
