@@ -159,7 +159,7 @@
 		"typename": "daisy::AnalogControl",
 		"direction": "in",
 		"pin": "a",
-		"flip": "true",
+		"flip": "false",
 		"invert": "false",
 		"slew": "1.0/som.AudioCallbackRate()",
 		"process": "{name}.Process();",
